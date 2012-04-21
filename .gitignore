@@ -1,8 +1,6 @@
-bin/
 .idea/
 *.pyc
 *.iml
 .Python
 .DS_Store
-include/
-lib/
+venv/
