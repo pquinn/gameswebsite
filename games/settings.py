@@ -4,7 +4,7 @@ import os.path
 
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -123,7 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'tracker',
+    'games.tracker',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -150,3 +150,5 @@ LOGGING = {
         },
     }
 }
+
+LOGIN_REDIRECT_URL = "/"

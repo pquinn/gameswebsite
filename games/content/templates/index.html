@@ -1,3 +1,4 @@
+{% load url from future %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,30 +39,22 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul> -->
+          {% if user.is_authenticated %}
+            <ul class="nav pull-right">
+              <li><p class="navbar-text pull-right">Welcome, {{ user.username }}</p></li>
+              <li><a href="/logout">logout</a></li>
+            </ul>
+          {% else %}
+            <ul class="nav pull-right">
+              <li><a href="/login" class="navbar-text pull-right">login</a></li>
+            </ul>
+          {% endif %}
         </div>
       </div>
     </div>
 
     <div class="container-fluid">
-      <div class="sidebar">
-        <a href="/"><img src="/static/nugdclogo.jpg" width="220" style="padding-bottom: 14px"/></a>
-        <div class="well">
-          <h5>Things we do:</h5>
-          <ul>
-            <li><a href="/events">Events</a></li>
-            <li><a href="/">Current Projects</a></li>
-          </ul>
-          <h5>Who we are:</h5>
-          <ul>
-            <li><a href="/">About us</a></li>
-            <li><a href="/">Contact</a></li>
-          </ul>
-          <h5>Be a part of it:</h5>
-          <ul>
-            <li><a href="#">Join</a></li>
-          </ul>
-        </div>
-      </div>
+      {% include "components/sidebar.html" %}
       <div class="content">
         <!-- Main hero unit for a primary marketing message or call to action -->
         <div class="hero-unit">
