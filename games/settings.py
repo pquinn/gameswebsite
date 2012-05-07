@@ -4,7 +4,7 @@ import os.path
 
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -162,6 +162,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'games.context_processors.constants',
     'games.context_processors.time',
+    'games.context_processors.urls',
 )
 
 TEMPLATE_STRING_IF_INVALID = 'INVALID TEMPLATE STRING'
