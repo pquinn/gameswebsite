@@ -30,29 +30,7 @@
 
   <body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="brand" href="/">Northeastern University Game Development Club</a>
-          <!-- <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul> -->
-          {% if user.is_authenticated %}
-            <ul class="nav pull-right">
-              <li><p class="navbar-text pull-right">Welcome, {{ user.username }}</p></li>
-              <li class="divider-vertical"></li>
-              <li><a href="/logout">logout</a></li>
-            </ul>
-          {% else %}
-            <ul class="nav pull-right">
-              <li><a href="/login" class="navbar-text pull-right">login</a></li>
-            </ul>
-          {% endif %}
-        </div>
-      </div>
-    </div>
+    {% include "components/navbar.html" %}
 
     <div class="container-fluid">
       <div class="row-fluid">
@@ -61,26 +39,22 @@
         </div>
         <div class="span10">
           <div class="content">
-            <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
               {% block contentTitle %}
               <h1>We make games.</h1>
               <p>If you have a passion for designing and analyzing games of all kinds, then this is the place for you.</p>
               {% endblock %}
             </div>
-
-            <!-- Example row of columns -->
             <div class="row-fluid">
               {% block contentBody %}
               <div class="span8">
-                <h2>Heading</h2>
-                <p>Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
+                <h2>Hey!</h2>
+                <p>I see you've found your way to our homepage! Check out the links on the right to find any information that you may be looking for.</p>
               </div>
               <div class="span4">
-                <h2>Heading</h2>
-                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn" href="#">View details &raquo;</a></p>
+                <!--<h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                <p><a class="btn" href="#">View details &raquo;</a></p> -->
              </div>
              {% endblock %}
             </div>
@@ -88,7 +62,7 @@
         </div>
       </div>
         <footer>
-          <p>&copy; NUGDC 2011</p>
+          <p>&copy; NUGDC, {{ current_time|date:"M Y" }}</p>
         </footer>
       </div>
     </div>

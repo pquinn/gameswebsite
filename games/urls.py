@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.conf.urls.defaults import *
 from games import settings
 from django.contrib.auth import urls as auth_urls
-from django.contrib.auth.views import login as login_view
 
 admin.autodiscover()
 

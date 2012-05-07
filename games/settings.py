@@ -4,7 +4,7 @@ import os.path
 
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -153,3 +153,15 @@ LOGGING = {
 }
 
 LOGIN_REDIRECT_URL = "/"
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.request',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'games.context_processors.constants',
+    'games.context_processors.time',
+)
+
+TEMPLATE_STRING_IF_INVALID = 'INVALID TEMPLATE STRING'

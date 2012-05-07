@@ -1,0 +1,24 @@
+<!-- navbar module -->
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="brand" href="/">Northeastern University Game Development Club</a>
+      <!-- <ul class="nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul> -->
+      {% if user.is_authenticated %}
+        <ul class="nav pull-right">
+          <li><p class="navbar-text pull-right">Welcome, {{ user.username }}</p></li>
+          <li class="divider-vertical"></li>
+          <li><a href="/logout">logout</a></li>
+        </ul>
+      {% else %}
+        <ul class="nav pull-right">
+          <li><a href="/login" class="navbar-text pull-right">login</a></li>
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+</div>
