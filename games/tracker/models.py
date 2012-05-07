@@ -35,4 +35,8 @@ class Unlocked(models.Model):
 class MemberForm(ModelForm):
     class Meta:
         model = Member
-        fields = ('tag', 'year', 'nuid', 'email')
+
+class PartialMemberForm(ModelForm):
+    class Meta:
+        model = Member
+        exclude = ('achievements',)

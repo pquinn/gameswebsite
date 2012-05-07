@@ -13,7 +13,7 @@ def add_member(request):
 #    else:
 #        formset = MemberFormSet()
     return render_to_response("newmember.html", {
-        "formset": MemberForm
+        "formset": PartialMemberForm
         },
         context_instance=RequestContext(request),
     )
