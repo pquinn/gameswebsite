@@ -14,7 +14,7 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ CURRENT_URL }}{{ STATIC_URL }}bootstrap/css/bootstrap.css">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -50,6 +50,8 @@
               <div class="span8">
                 <h2>Hey!</h2>
                 <p>I see you've found your way to our homepage! Check out the links on the right to find any information that you may be looking for.</p>
+                <p>current: {{ CURRENT_URL }}</p>
+                <p>root: {{ DJANGO_ROOT }}</p>
               </div>
               <div class="span4">
                 <!--<h2>Heading</h2>

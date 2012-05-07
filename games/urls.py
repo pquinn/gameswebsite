@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.conf.urls.defaults import *
 from games import settings
 from django.contrib.auth import urls as auth_urls
+from tracker import views
 
 admin.autodiscover()
 
@@ -15,12 +16,18 @@ urlpatterns += patterns('django.views.generic.simple',
 )
 
 urlpatterns += patterns('',
-    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html',
+    url(r'^login$', 'django.contrib.auth.views.login', {'template_name': 'login.html',
                                                         'redirect_field_name': 'next'}),
 )
 
 urlpatterns += patterns('',
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+)
+
+urlpatterns += patterns('tracker.views',
+    (r'^tracker/add-member$', 'add_member'),
+    #(r'^tracker/(?P<post_id>\d+)/$', 'detail'),
+    #(r'^tracker/(?P<post_id>\d+)/addcomment$', 'add_comment'),
 )
 
 urlpatterns += patterns('',

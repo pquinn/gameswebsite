@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 YEAR_CHOICES = (
     (u'FR', u'Freshman'),
@@ -30,3 +31,8 @@ class Unlocked(models.Model):
     member = models.ForeignKey(Member)
     unlockable = models.ForeignKey(Unlockable)
     date = models.DateTimeField(auto_now_add=True)
+
+class MemberForm(ModelForm):
+    class Meta:
+        model = Member
+        fields = ('tag', 'year', 'nuid', 'email')

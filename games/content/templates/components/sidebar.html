@@ -1,6 +1,6 @@
 <!-- sidebar module -->
 <div class="sidebar-nav">
-  <a href="/"><img src="{{ STATIC_URL }}/images/nugdclogo.jpg" width="220" style="padding-bottom: 14px"/></a>
+  <a href="/"><img src="{{ STATIC_URL }}images/nugdclogo.jpg" width="220" style="padding-bottom: 14px"/></a>
   <div class="well">
     <h5>Things we do:</h5>
     <ul>
@@ -17,10 +17,10 @@
       <li><a href="#">Join</a></li>
     </ul>
     {% if user.is_authenticated %}
-      <h5>Admin: </h5>
+      <h5>Tools: </h5>
       <ul>
         <li><a href="/admin">Admin Tools</a></li>
-        <li><a href="/add-member">Add Member Form</a></li>
+        <li><a href="/tracker/add-member">Add Member Form</a></li>
       </ul>
     {% endif %}
   </div>
