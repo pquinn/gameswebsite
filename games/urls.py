@@ -15,9 +15,9 @@ urlpatterns += patterns('django.views.generic.simple',
     url(r'^events$', 'direct_to_template', {'template': 'events.html'}),
 )
 
-urlpatterns += patterns('',
-    url(r'^login$', 'django.contrib.auth.views.login', {'template_name': 'login.html',
-                                                        'redirect_field_name': 'next'}),
+urlpatterns += patterns('django.contrib.auth.views',
+    url(r'^login/$', 'login', {'template_name': 'login.html',
+                              'redirect_field_name': 'next'}),
 )
 
 urlpatterns += patterns('',
@@ -27,8 +27,6 @@ urlpatterns += patterns('',
 urlpatterns += patterns('tracker.views',
     (r'^tracker/members/add-member$', 'add_member'),
     (r'^tracker/members/save-member$', 'save_member'),
-    #(r'^tracker/(?P<post_id>\d+)/$', 'detail'),
-    #(r'^tracker/(?P<post_id>\d+)/addcomment$', 'add_comment'),
 )
 
 urlpatterns += patterns('',
