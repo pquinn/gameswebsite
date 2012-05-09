@@ -25,7 +25,8 @@ urlpatterns += patterns('',
 )
 
 urlpatterns += patterns('tracker.views',
-    (r'^tracker/add-member$', 'add_member'),
+    (r'^tracker/members/add-member$', 'add_member'),
+    (r'^tracker/members/save-member$', 'save_member'),
     #(r'^tracker/(?P<post_id>\d+)/$', 'detail'),
     #(r'^tracker/(?P<post_id>\d+)/addcomment$', 'add_comment'),
 )
