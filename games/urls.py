@@ -12,7 +12,13 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('django.views.generic.simple',
     url(r'^$', 'direct_to_template', {'template': 'index.html'}),
-    url(r'^events$', 'direct_to_template', {'template': 'events.html'}),
+    url(r'^join/$', 'direct_to_template', {'template': 'join.html'}),
+    url(r'^about/$', 'direct_to_template', {'template': 'about.html'}),
+    url(r'^events/$', 'direct_to_template', {'template': 'events.html'}),
+    url(r'^contact/$', 'direct_to_template', {'template': 'contact.html'}),
+    url(r'^projects/$', 'direct_to_template', {'template': 'projects.html'}),
+    #change this to a non generic view, for the love of god
+    url(r'^profile/$', 'direct_to_template', {'template': 'profile.html'}),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',

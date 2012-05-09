@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+{% block contentTitle %}
+  <h1>I guess you're cool.</h1>
+  <p>...for now.</p>
+{% endblock %}
+{% block contentBody %}
+  {% if not user.is_authenticated %}
+    <div class="span4">
+      <h2>wait, what?</h2>
+      <p>how did you even get here?</p>
+    </div>
+  {% else %}
+    <p>You're logged in as: {{ user.username }}</p>
+    <p>Last login: {{ user.last_login }}</p>
+  {% endif %}
+{% endblock %}

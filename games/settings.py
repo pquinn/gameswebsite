@@ -154,7 +154,7 @@ LOGGING = {
 
 LOGIN_URL = "/login/"
 
-LOGIN_REDIRECT_URL = "/login/"
+LOGIN_REDIRECT_URL = "/profile/"
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
