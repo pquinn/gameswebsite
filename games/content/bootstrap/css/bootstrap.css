@@ -4916,7 +4916,9 @@ a.badge:hover {
 }
 
 .hero-unit {
-  padding: 60px;
+  max-height: 203px;
+  /* had to mess with the padding because i want it to align with the image */
+  padding: 60px 60px 47px 60px;
   margin-bottom: 30px;
   background-color: #eeeeee;
   -webkit-border-radius: 6px;
