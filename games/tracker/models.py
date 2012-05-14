@@ -1,5 +1,8 @@
 from django.db import models
 from django.forms import ModelForm
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+
 
 YEAR_CHOICES = (
     (u'FR', u'Freshman'),
@@ -29,6 +32,7 @@ class Member(models.Model):
     nuid = models.CharField(max_length=10, primary_key=True)
     email = models.CharField(max_length=30, unique=True)
     achievements = models.ManyToManyField(Unlockable, through="Unlocked")
+    score = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.tag
@@ -39,7 +43,7 @@ class Unlocked(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return unicode("%s unlocked %s", self.member, self.unlockable)
+        return unicode("{0:>s} unlocked \"{1:>s}\"".format(self.member.tag, self.unlockable.name))
 
 class MemberForm(ModelForm):
     class Meta:
@@ -48,4 +52,15 @@ class MemberForm(ModelForm):
 class PartialMemberForm(ModelForm):
     class Meta:
         model = Member
-        exclude = ('achievements',)
+        exclude = ('achievements','score',)
+
+@receiver(post_save, sender=Unlocked)
+def update_scores(sender, **kwargs):
+    members = Member.objects.all()
+    for member in members:
+        unlockables = member.achievements.all()
+        member_total = 0
+        for unlockable in unlockables:
+            member_total += unlockable.point_value
+        member.score = member_total
+        member.save()

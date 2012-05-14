@@ -10,7 +10,11 @@
       </ul> -->
       {% if user.is_authenticated %}
         <ul class="nav pull-right">
-          <li><p class="navbar-text pull-right">Welcome, {{ user.username }}</p></li>
+          <li>
+            <p class="navbar-text pull-right">
+              Welcome, <a href="/profile">{{ user.username }}</a>
+            </p>
+          </li>
           <li class="divider-vertical"></li>
           <li><a href="/logout">logout</a></li>
         </ul>

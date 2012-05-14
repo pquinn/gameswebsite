@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block contentTitle %}
+  <h1>Leaderboard</h1>
+  <p>Commence trash talking.</p>
+{% endblock %}
+
+{% block contentBody %}
+  <table class="table table-striped">
+    <thead>
+      <td>#</td>
+      <td>Tag</td>
+      <td>Score</td>
+    </thead>
+    {% for member in members %}
+      <tr>
+        <td><span class="badge badge-success">{{ forloop.counter }}</span></td>
+        <td>{{ member.tag }}</td>
+        <td>{{ member.score }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

@@ -45,3 +45,10 @@ def save_member(request):
             },
             context_instance=RequestContext(request),
             )
+
+def leaderboard(request):
+    members = Member.objects.all().order_by("-score")
+    param_dictionary = {"members": members}
+    return render_to_response("leaderboard.html",
+                              param_dictionary,
+                              context_instance=(RequestContext(request)))

@@ -31,8 +31,9 @@ urlpatterns += patterns('',
 )
 
 urlpatterns += patterns('tracker.views',
-    (r'^tracker/members/add-member$', 'add_member'),
-    (r'^tracker/members/save-member$', 'save_member'),
+    (r'^tracker/leaderboard/$', 'leaderboard'),
+    (r'^tracker/members/add-member/$', 'add_member'),
+    (r'^tracker/members/save-member/$', 'save_member'),
 )
 
 urlpatterns += patterns('',
