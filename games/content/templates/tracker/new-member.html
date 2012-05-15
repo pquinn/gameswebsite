@@ -20,7 +20,7 @@
     {% endif %}
   {% endif %}
   <h2>Add Member: </h2>
-  <form method="post" action="/tracker/members/save-member/">
+  <form method="post" action="/tracker/member/save-member/">
     {% csrf_token %}
 
     {{ formset }}

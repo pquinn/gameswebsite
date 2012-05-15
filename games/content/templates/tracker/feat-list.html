@@ -6,4 +6,20 @@
 {% endblock %}
 
 {% block contentBody %}
+    <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <td style="width: 50%;">Name</td>
+        <td style="width: 25%;">Point Value</td>
+        <td>Type</td>
+      </tr>
+    </thead>
+    {% for feat in feats %}
+      <tr>
+        <td>{{ feat.name }}</td>
+        <td><span class="badge badge-success">{{ feat.point_value }}</span></td>
+        <td>{{ feat.type }}</td>
+      </tr>
+    {% endfor %}
+  </table>
 {% endblock %}
