@@ -9,14 +9,15 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <td style="width: 40px;">#</td>
+        <td style="width: 5%; text-align: right;">#</td>
         <td>Tag</td>
         <td>Score</td>
       </tr>
     </thead>
     {% for member in members %}
       <tr>
-        <td><span class="badge badge-success">{{ forloop.counter }}</span></td>
+        <!-- make css class to include that information -->
+        <td style="text-align: right;"><span class="badge badge-success">{{ forloop.counter }}</span></td>
         <td>{{ member.tag }}</td>
         <td>{{ member.score }}</td>
       </tr>
