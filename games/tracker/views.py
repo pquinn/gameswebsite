@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def add_member(request):
-    return render_to_response("newmember.html", {
+    return render_to_response("tracker/new-member.html", {
         "formset": PartialMemberForm
         },
         context_instance=RequestContext(request),
@@ -20,7 +20,7 @@ def save_member(request):
             new_member.save()
             name = unicode(new_member.cleaned_data['tag'])
             message = unicode("Member {0:>s} was added successfully!".format(name))
-            return render_to_response("newmember.html", {
+            return render_to_response("tracker/new-member.html", {
                 "formset": PartialMemberForm,
                 "message": message,
                 "status": "success"
@@ -29,16 +29,16 @@ def save_member(request):
             )
         else:
             message = unicode("Invalid form data.")
-        return render_to_response("newmember.html", {
-                "formset": PartialMemberForm,
-                "message": message,
-                "status": "error"
-            },
-            context_instance=RequestContext(request),
+            return render_to_response("tracker/new-member.html", {
+                    "formset": PartialMemberForm,
+                    "message": message,
+                    "status": "error"
+                },
+                context_instance=RequestContext(request),
             )
     except ():
         message = unicode("Error adding user.")
-        return render_to_response("newmember.html", {
+        return render_to_response("tracker/new-member.html", {
                 "formset": PartialMemberForm,
                 "message": message,
                 "status": "error"
@@ -49,6 +49,11 @@ def save_member(request):
 def leaderboard(request):
     members = Member.objects.all().order_by("-score")
     param_dictionary = {"members": members}
-    return render_to_response("leaderboard.html",
+    return render_to_response("tracker/leaderboard.html",
                               param_dictionary,
                               context_instance=(RequestContext(request)))
+
+def list_feats(request):
+    feats = Unlockable.objects.filter(type=u'feat')
+    param_dictionary = {"feats": feats}
+    return render_to_response("tracker/feat-list.html")

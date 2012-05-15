@@ -18,11 +18,11 @@ urlpatterns += patterns('django.views.generic.simple',
     url(r'^contact/$', 'direct_to_template', {'template': 'contact.html'}),
     url(r'^projects/$', 'direct_to_template', {'template': 'projects.html'}),
     #change this to a non generic view, for the love of god
-    url(r'^profile/$', 'direct_to_template', {'template': 'profile.html'}),
+    url(r'^profile/$', 'direct_to_template', {'template': 'users/profile.html'}),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',
-    url(r'^login/$', 'login', {'template_name': 'login.html',
+    url(r'^login/$', 'login', {'template_name': 'users/login.html',
                               'redirect_field_name': 'next'}),
 )
 
@@ -34,6 +34,7 @@ urlpatterns += patterns('tracker.views',
     (r'^tracker/leaderboard/$', 'leaderboard'),
     (r'^tracker/members/add-member/$', 'add_member'),
     (r'^tracker/members/save-member/$', 'save_member'),
+    (r'^tracker/unlockables/feat-list/$', 'list_feats'),
 )
 
 urlpatterns += patterns('',
