@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block contentTitle %}
-  <h1>Feats</h1>
+  <h1>Unlockables</h1>
   <p>Just <em>try</em> and get them all.</p>
 {% endblock %}
 
@@ -15,13 +15,15 @@
         <td>Type</td>
       </tr>
     </thead>
-    {% for feat in feats %}
-      <tr>
-        <td style="text-align: right;">{{ forloop.counter }}</td>
-        <td>{{ feat.name }}</td>
-        <td><span class="badge badge-success">{{ feat.point_value }}</span></td>
-        <td>{{ feat.type }}</td>
-      </tr>
+    {% for unlockable in unlockables %}
+      {% if unlockable.is_public or unlockable.type != "ach" %}
+        <tr>
+          <td style="text-align: right;">{{ forloop.counter }}</td>
+          <td>{{ unlockable.name }}</td>
+          <td><span class="badge badge-success">{{ unlockable.point_value }}</span></td>
+          <td>{{ unlockable.type }}</td>
+        </tr>
+      {% endif %}
     {% endfor %}
   </table>
 {% endblock %}

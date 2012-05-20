@@ -1,9 +1,10 @@
 # Create your views here.
 from games.tracker.models import *
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 
+#not sure why a request context is required here...
 @login_required
 def add_member(request):
     return render_to_response("tracker/new-member.html", {
@@ -12,6 +13,7 @@ def add_member(request):
         context_instance=RequestContext(request),
     )
 
+#change return to HttpResponseRedirect
 @login_required
 def save_member(request):
     try:
@@ -54,8 +56,16 @@ def leaderboard(request):
                               context_instance=(RequestContext(request)))
 
 def list_feats(request):
-    feats = Unlockable.objects.filter(type=u'feat')
-    param_dictionary = {"feats": feats}
-    return render_to_response("tracker/feat-list.html",
+    #feats = Unlockable.objects.filter(type=u'feat')
+    unlockables = Unlockable.objects.all()
+    param_dictionary = {"unlockable": unlockables}
+    return render_to_response("tracker/unlockable-list.html",
                               param_dictionary,
                               context_instance=(RequestContext(request)))
+
+def unlockable_detail(request, unlockable_id):
+    unlockable = get_object_or_404(Unlockable, pk=unlockable_id)
+    param_dictionary = {"unlockable": unlockable}
+    return render_to_response("tracker/unlockable-detail.html",
+                                param_dictionary,
+                                context_instance=(RequestContext(request)))

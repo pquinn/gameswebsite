@@ -37,6 +37,10 @@ urlpatterns += patterns('tracker.views',
     (r'^tracker/unlockable/feat-list/$', 'list_feats'),
 )
 
+urlpatterns += patterns('tracker.views',
+    (r'^tracker/unlockable/(?P<unlockable_id>\d+)/$', 'unlockable_detail')
+)
+
 urlpatterns += patterns('',
     # ... other URL defs and includes here ....
     (r'', include(auth_urls)),

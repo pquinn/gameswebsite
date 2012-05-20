@@ -22,6 +22,9 @@ class Unlockable(models.Model):
     description = models.TextField()
     point_value = models.IntegerField()
     type = models.CharField(max_length=4, choices=UNLOCKABLE_TYPE_CHOICES)
+    is_public = models.BooleanField(default=False)
+    # figure out how to deal with this
+    #first_to_unlock = models.OneToOneField(Member, default=None)
 
     def __unicode__(self):
         return self.name
@@ -64,3 +67,7 @@ def update_scores(sender, **kwargs):
             member_total += unlockable.point_value
         member.score = member_total
         member.save()
+
+#@receiver(post_save, sender=Unlocked)
+#def make_achievement_public(sender, **kwargs):
+    # change the achievement to public

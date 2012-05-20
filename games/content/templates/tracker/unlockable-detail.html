@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+{% block contentTitle %}
+  <h1>{{ unlockable.type }}</h1>
+  <p>{{ unlockable.name }}</p>
+{% endblock %}
+
+{% block contentBody %}
+  <table class="table table-bordered">
+    <tr>
+      <td>
+        <strong>
+          Description
+        </strong>
+      </td>
+      <td>
+        {{ unlockable.description }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          Point value
+        </strong>
+      </td>
+      <td>
+        <span class="badge badge-success">{{ unlockable.point_value }}</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          First to unlock
+        </strong>
+      </td>
+      <td>
+        Not implemented yet...
+      </td>
+    </tr>
+  </table>
+{% endblock %}
