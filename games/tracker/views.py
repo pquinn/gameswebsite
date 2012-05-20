@@ -58,7 +58,7 @@ def leaderboard(request):
 def list_feats(request):
     #feats = Unlockable.objects.filter(type=u'feat')
     unlockables = Unlockable.objects.all()
-    param_dictionary = {"unlockable": unlockables}
+    param_dictionary = {"unlockables": unlockables}
     return render_to_response("tracker/unlockable-list.html",
                               param_dictionary,
                               context_instance=(RequestContext(request)))

@@ -16,10 +16,10 @@
       </tr>
     </thead>
     {% for unlockable in unlockables %}
-      {% if unlockable.is_public or unlockable.type != "ach" %}
+      {% if unlockable.is_public or unlockable.type == 'feat' %}
         <tr>
           <td style="text-align: right;">{{ forloop.counter }}</td>
-          <td>{{ unlockable.name }}</td>
+          <td><a href="/tracker/unlockable/{{ unlockable.id }}">{{ unlockable.name }}</a></td>
           <td><span class="badge badge-success">{{ unlockable.point_value }}</span></td>
           <td>{{ unlockable.type }}</td>
         </tr>
