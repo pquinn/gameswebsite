@@ -68,6 +68,18 @@ def update_scores(sender, **kwargs):
         member.score = member_total
         member.save()
 
-#@receiver(post_save, sender=Unlocked)
-#def make_achievement_public(sender, **kwargs):
-    # change the achievement to public
+@receiver(post_save, sender=Unlockable)
+def make_feat_public(sender, **kwargs):
+    if kwargs.get('created', False):
+        unlockable = kwargs.get('instance')
+        if unlockable.type == 'feat':
+            unlockable.is_public = True
+            unlockable.save()
+
+@receiver(post_save, sender=Unlocked)
+def make_achievement_public(sender, **kwargs):
+    if kwargs.get('created', False):
+        unlocked = kwargs.get('instance')
+        achievement = unlocked.unlockable
+        achievement.is_public = True
+        achievement.save()

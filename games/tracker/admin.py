@@ -11,7 +11,7 @@ class MemberAdmin(admin.ModelAdmin):
 
 class UnlockableAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['type', 'name', 'description', 'point_value']}),
+        (None, {'fields': ['type', 'name', 'description', 'point_value', 'is_public']}),
     ]
     list_display = ('type', 'name', 'point_value')
     search_fields = ['type', 'name', 'point_value', 'description']
