@@ -2,26 +2,22 @@
 <div class="sidebar-nav">
   <a href="/"><img src="{{ STATIC_URL }}images/nugdclogo.jpg" width="220" style="padding-bottom: 14px"/></a>
   <div class="well">
-    <h5>Things we do:</h5>
-    <ul>
+    <ul class="nav nav-list">
+      <li class="nav-header">Things we do:</li>
       <li><a href="/events">Events</a></li>
       <li><a href="/projects">Current Projects</a></li>
-    </ul>
-    <h5>Who we are:</h5>
-    <ul>
+
+      <li class="nav-header">Who we are:</li>
       <li><a href="/about">About us</a></li>
       <li><a href="/contact">Contact</a></li>
-    </ul>
-    <h5>Be a part of it:</h5>
-    <ul>
+
+      <li class="nav-header">Be a part of it:</li>
       <li><a href="/join">Join</a></li>
-    </ul>
-    {% if user.is_authenticated %}
-      <h5>Tools: </h5>
-      <ul>
+      {% if user.is_authenticated %}
+        <li class="nav-header">Tools: </li>
         <li><a href="/admin">Admin Tools</a></li>
         <li><a href="/tracker/member/add-member">Add Member Form</a></li>
-      </ul>
-    {% endif %}
+      {% endif %}
+    </ul>
   </div>
 </div>

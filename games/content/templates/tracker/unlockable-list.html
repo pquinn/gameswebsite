@@ -16,14 +16,25 @@
       </tr>
     </thead>
     {% for unlockable in unlockables %}
-      {% if unlockable.is_public or unlockable.type == 'feat' %}
-        <tr>
-          <td style="text-align: right;">{{ forloop.counter }}</td>
-          <td><a href="/tracker/unlockable/{{ unlockable.id }}">{{ unlockable.name }}</a></td>
-          <td><span class="badge badge-success">{{ unlockable.point_value }}</span></td>
-          <td>{{ unlockable.type }}</td>
-        </tr>
-      {% endif %}
+      <tr>
+        <td style="text-align: right;">{{ forloop.counter }}</td>
+        <td>
+          <script>
+            $(function ()
+                { $("#name{{ forloop.counter }}").popover({
+                  placement: 'right'
+                });
+            });
+          </script>
+          <a href="/tracker/unlockable/{{ unlockable.id }}" id="name{{ forloop.counter }}" rel="popover"
+             data-original-title="Description"
+             data-content="{{ unlockable.description }}">
+            {{ unlockable.name }}
+          </a>
+        </td>
+        <td><span class="badge badge-success">{{ unlockable.point_value }}</span></td>
+        <td>{{ unlockable.type }}</td>
+      </tr>
     {% endfor %}
   </table>
 {% endblock %}
