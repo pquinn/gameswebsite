@@ -48,6 +48,48 @@ def save_member(request):
             context_instance=RequestContext(request),
             )
 
+@login_required
+def add_unlockable(request):
+    return render_to_response("tracker/new-unlockable.html", {
+        "formset": PartialUnlockableForm
+        },
+        context_instance=RequestContext(request),
+    )
+
+@login_required
+def save_unlockable(request):
+    try:
+        new_unlockable = PartialMemberForm(request.POST)
+        if new_unlockable.is_valid():
+            new_unlockable.save()
+            name = unicode(new_member.cleaned_data['name'])
+            message = unicode("Unlockable {0:>s} was added successfully!".format(name))
+            return render_to_response("tracker/new-unlockable.html", {
+                "formset": PartialUnlockableForm,
+                "message": message,
+                "status": "success"
+            },
+            context_instance=RequestContext(request),
+            )
+        else:
+            message = unicode("Invalid form data.")
+            return render_to_response("tracker/new-unlockable.html", {
+                    "formset": PartialUnlockableForm,
+                    "message": message,
+                    "status": "error"
+                },
+                context_instance=RequestContext(request),
+            )
+    except ():
+        message = unicode("Error adding unlockable.")
+        return render_to_response("tracker/new-unlockable.html", {
+                "formset": PartialUnlockableForm,
+                "message": message,
+                "status": "error"
+            },
+            context_instance=RequestContext(request),
+            )
+
 def leaderboard(request):
     members = Member.objects.all().order_by("-score")
     param_dictionary = {"members": members}

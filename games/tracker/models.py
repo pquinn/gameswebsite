@@ -1,6 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
 from django.dispatch import receiver
+from django.shortcuts import get_object_or_404
 from django.db.models.signals import post_save
 
 
@@ -57,16 +58,22 @@ class PartialMemberForm(ModelForm):
         model = Member
         exclude = ('achievements','score',)
 
+class PartialUnlockableForm(ModelForm):
+    class Meta:
+        model = Unlockable
+        exclude = ('is_public',)
+
 @receiver(post_save, sender=Unlocked)
 def update_scores(sender, **kwargs):
-    members = Member.objects.all()
-    for member in members:
-        unlockables = member.achievements.all()
-        member_total = 0
-        for unlockable in unlockables:
-            member_total += unlockable.point_value
-        member.score = member_total
-        member.save()
+    if kwargs.get('created', False):
+        members = Member.objects.all()
+        for member in members:
+            unlockables = member.achievements.all()
+            member_total = 0
+            for unlockable in unlockables:
+                member_total += unlockable.point_value
+            member.score = member_total
+            member.save()
 
 @receiver(post_save, sender=Unlockable)
 def make_feat_public(sender, **kwargs):
@@ -81,5 +88,15 @@ def make_achievement_public(sender, **kwargs):
     if kwargs.get('created', False):
         unlocked = kwargs.get('instance')
         achievement = unlocked.unlockable
-        achievement.is_public = True
-        achievement.save()
+        if achievement.is_public == False:
+            achievement.is_public = True
+            achievement.save()
+
+#this is being ran twice for some odd reason
+#@receiver(post_save, sender=Member)
+#def member_created(sender, **kwargs):
+#    if kwargs.get('created', False):
+#        member = kwargs.get('instance')
+#        unlockable = get_object_or_404(Unlockable, name="Attend a meeting!")
+#        unlocked = Unlocked(member=member, unlockable=unlockable)
+#        unlocked.save()

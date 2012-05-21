@@ -20,12 +20,12 @@
     {% endif %}
   {% endif %}
   <h2>Add Member: </h2>
-  <form method="post" action="/tracker/member/save-member/">
+  <form method="post" action="/tracker/unlockable/save-unlockable/">
     {% csrf_token %}
 
     {{ formset }}
 
     <input type="submit" value="submit" style="display: block;"/>
-    <input type="hidden" name="next" value="" />
+    <input type="hidden" name="next" value="{{ next }}" />
   </form>
 {% endblock %}
