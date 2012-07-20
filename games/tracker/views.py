@@ -59,11 +59,11 @@ def add_unlockable(request):
 @login_required
 def save_unlockable(request):
     try:
-        new_unlockable = PartialMemberForm(request.POST)
+        new_unlockable = PartialUnlockableForm(request.POST)
         if new_unlockable.is_valid():
             new_unlockable.save()
-            name = unicode(new_member.cleaned_data['name'])
-            message = unicode("Unlockable {0:>s} was added successfully!".format(name))
+            name = unicode(new_unlockable.cleaned_data['name'])
+            message = unicode("Unlockable \"{0:>s}\" was added successfully!".format(name))
             return render_to_response("tracker/new-unlockable.html", {
                 "formset": PartialUnlockableForm,
                 "message": message,
@@ -91,7 +91,7 @@ def save_unlockable(request):
             )
 
 def leaderboard(request):
-    members = Member.objects.all().order_by("-score")
+    members = Member.objects.all().order_by("-score")[:25]
     param_dictionary = {"members": members}
     return render_to_response("tracker/leaderboard.html",
                               param_dictionary,

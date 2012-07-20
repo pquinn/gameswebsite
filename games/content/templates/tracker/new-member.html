@@ -7,6 +7,9 @@
 
 {% block contentBody %}
   {% if message %}
+    <script>
+      $(".alert").alert()
+    </script>
     {% if status == "success" %}
       <div class="alert alert-success">
         <a class="close" data-dismiss="alert" href="#">×</a>
