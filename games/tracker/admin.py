@@ -13,7 +13,7 @@ class UnlockableAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['type', 'name', 'description', 'point_value', 'is_public']}),
     ]
-    list_display = ('type', 'name', 'point_value')
+    list_display = ('type', 'name', 'point_value', 'is_public')
     search_fields = ['type', 'name', 'point_value', 'description']
 
 class UnlockedAdmin(admin.ModelAdmin):
