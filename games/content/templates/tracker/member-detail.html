@@ -37,6 +37,8 @@
         <ul>
           {% for achievement in member.achievements.all %}
             <li>{{ achievement.name }}</li>
+          {% empty %}
+            <li><em>Nothing yet. Better get to work!</em></li>
           {% endfor %}
         </ul>
       </td>
