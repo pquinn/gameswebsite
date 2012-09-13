@@ -42,7 +42,9 @@ urlpatterns += patterns('tracker.views',
 )
 
 urlpatterns += patterns('tracker.views',
-    (r'^tracker/unlockable/(?P<unlockable_id>\d+)/$', 'unlockable_detail')
+    (r'^tracker/unlockable/(?P<unlockable_id>\d+)/$', 'unlockable_detail'),
+    (r'^tracker/member/(?P<member_id>\d+)/$', 'member_detail')
+
 )
 
 urlpatterns += patterns('',

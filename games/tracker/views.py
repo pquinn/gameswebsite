@@ -115,6 +115,13 @@ def unlockable_detail(request, unlockable_id):
                                 param_dictionary,
                                 context_instance=(RequestContext(request)))
 
+def member_detail(request, member_id):
+    member = get_object_or_404(Member, pk=member_id)
+    param_dictionary = {"member": member}
+    return render_to_response("tracker/member-detail.html",
+                                param_dictionary,
+                                context_instance=(RequestContext(request)))
+
 def mass_achievement_unlock(request):
     if request.method == 'POST':
         formset = MassAchievementUnlockForm(request.POST)

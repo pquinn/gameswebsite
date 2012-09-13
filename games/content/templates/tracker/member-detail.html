@@ -1,0 +1,55 @@
+{% extends "index.html" %}
+
+{% block contentTitle %}
+  <h1>{{ member.tag }}</h1>
+  <!-- <p>{{ unlockable.name }}</p> -->
+{% endblock %}
+
+{% block contentBody %}
+  <table class="table table-bordered">
+    <tr>
+      <td style="width: 20%;">
+        <strong>
+          Tag
+        </strong>
+      </td>
+      <td>
+        {{ member.tag }}
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 20%;">
+        <strong>
+          Year
+        </strong>
+      </td>
+      <td>
+        {{ member.year }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>
+          Achievements
+        </strong>
+      </td>
+      <td>
+        <ul>
+          {% for achievement in member.achievements.all %}
+            <li>{{ achievement.name }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <!-- <tr>
+      <td>
+        <strong>
+          First to unlock
+        </strong>
+      </td>
+      <td>
+        Not implemented yet...
+      </td>
+    </tr> -->
+  </table>
+{% endblock %}

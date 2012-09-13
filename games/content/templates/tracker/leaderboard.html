@@ -18,7 +18,7 @@
       <tr>
         <!-- make css class to include that information -->
         <td style="text-align: right;"><span class="badge badge-success">{{ forloop.counter }}</span></td>
-        <td>{{ member.tag }}</td>
+        <td><a href="/tracker/member/{{ member.nuid }}">{{ member.tag }}</a></td>
         <td>{{ member.score }}</td>
       </tr>
     {% endfor %}
