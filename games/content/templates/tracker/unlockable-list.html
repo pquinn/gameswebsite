@@ -28,8 +28,12 @@
           </script>
           <a href="/tracker/unlockable/{{ unlockable.id }}" id="name{{ forloop.counter }}" rel="popover"
              data-original-title="Description"
-             data-content="{{ unlockable.description }}">
-            {{ unlockable.name }}
+             data-content="{% if unlockable.is_public %}
+                              {{ unlockable.name }}
+                           {% else %}
+                              Whoops! That's still a secret!
+                           {% endif %}">
+             {{ unlockable.name }}
           </a>
         </td>
         <td><span class="badge badge-success">{{ unlockable.point_value }}</span></td>
