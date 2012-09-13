@@ -1,8 +1,10 @@
 # Create your views here.
 from games.tracker.models import *
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import RequestContext
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django import forms
 
 #not sure why a request context is required here...
 @login_required
@@ -112,3 +114,39 @@ def unlockable_detail(request, unlockable_id):
     return render_to_response("tracker/unlockable-detail.html",
                                 param_dictionary,
                                 context_instance=(RequestContext(request)))
+
+def mass_achievement_unlock(request):
+    if request.method == 'POST':
+        formset = MassAchievementUnlockForm(request.POST)
+        if formset.is_valid():
+            selected_unlockable = formset.cleaned_data['unlockable']
+            members = formset.cleaned_data['members']
+            for member in members:
+                try:
+                    new_unlocked = Unlocked(member=member, unlockable=selected_unlockable)
+                    new_unlocked.save()
+                except:
+                    message = unicode("Error saving {0:>s}".format(new_unlocked))
+                    return render_to_response("tracker/mass-unlock.html", {
+                                "formset": MassAchievementUnlockForm,
+                                "message": message,
+                                "status": "error"
+                                },
+                                context_instance=RequestContext(request))
+            return HttpResponseRedirect("/tracker/success/")
+    else:
+        formset = MassAchievementUnlockForm()
+
+    return render(request, "tracker/mass-unlock.html", {
+        'formset': formset,
+    })
+
+def success(request):
+    return render_to_response("tracker/success.html",
+                                {"message": "good job",
+                                 "status": "success"},
+                                context_instance=RequestContext(request))
+
+class MassAchievementUnlockForm(forms.Form):
+    unlockable = forms.ModelChoiceField(queryset=Unlockable.objects.all())
+    members = forms.ModelMultipleChoiceField(queryset=Member.objects.all())

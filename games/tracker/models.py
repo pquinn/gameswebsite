@@ -41,6 +41,9 @@ class Member(models.Model):
     def __unicode__(self):
         return self.tag
 
+    def has_achievement(self, achievement):
+        return self.achievements.values
+
 class Unlocked(models.Model):
     member = models.ForeignKey(Member)
     unlockable = models.ForeignKey(Unlockable)

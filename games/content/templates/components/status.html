@@ -1,0 +1,13 @@
+{% if message %}
+  {% if status == "success" %}
+    <div class="alert alert-success">
+      <a class="close" data-dismiss="alert" href="#">×</a>
+      <strong>Success!</strong> {{ message }}
+    </div>
+  {% else %}
+    <div class="alert alert-error">
+      <a class="close" data-dismiss="alert" href="#">×</a>
+      <strong>Whoops!</strong> {{ message }}
+    </div>
+  {% endif %}
+{% endif %}

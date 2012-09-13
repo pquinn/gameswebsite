@@ -29,9 +29,9 @@
           <a href="/tracker/unlockable/{{ unlockable.id }}" id="name{{ forloop.counter }}" rel="popover"
              data-original-title="Description"
              data-content="{% if unlockable.is_public %}
-                              {{ unlockable.name }}
+                              {{ unlockable.description }}
                            {% else %}
-                              Whoops! That's still a secret!
+                              <em>Whoops! That's still a secret!</em>
                            {% endif %}">
              {{ unlockable.name }}
           </a>

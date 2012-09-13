@@ -14,7 +14,11 @@
         </strong>
       </td>
       <td>
-        {{ unlockable.description }}
+        {% if unlockable.is_public %}
+          {{ unlockable.description }}
+        {% else %}
+          <em>Whoops! That's still a secret!</em>
+        {% endif %}
       </td>
     </tr>
     <tr>

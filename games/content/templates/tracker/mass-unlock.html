@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block contentTitle %}
+  <h1>Tools</h1>
+  <p>functionality? no way.</p>
+{% endblock %}
+
+{% block contentBody %}
+  {% include "components/status.html" %}
+  <form action="/tracker/unlockable/mass-unlock/" method="post">
+    {% csrf_token %}
+    {{ formset.as_p }}
+    <input type="submit" value="Submit" />
+  </form>
+{% endblock %}

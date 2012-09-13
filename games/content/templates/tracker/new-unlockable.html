@@ -6,19 +6,7 @@
 {% endblock %}
 
 {% block contentBody %}
-  {% if message %}
-    {% if status == "success" %}
-      <div class="alert alert-success">
-        <a class="close" data-dismiss="alert" href="#">×</a>
-        <strong>Success!</strong> {{ message }}
-      </div>
-    {% else %}
-      <div class="alert alert-error">
-        <a class="close" data-dismiss="alert" href="#">×</a>
-        <strong>Whoops!</strong> {{ message }}
-      </div>
-    {% endif %}
-  {% endif %}
+  {% include "components/status.html" %}
   <h2>Add Member: </h2>
   <form method="post" action="/tracker/unlockable/save-unlockable/">
     {% csrf_token %}
