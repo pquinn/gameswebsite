@@ -122,6 +122,7 @@ def member_detail(request, member_id):
                                 param_dictionary,
                                 context_instance=(RequestContext(request)))
 
+@login_required
 def mass_achievement_unlock(request):
     if request.method == 'POST':
         formset = MassAchievementUnlockForm(request.POST)
@@ -145,7 +146,34 @@ def mass_achievement_unlock(request):
         formset = MassAchievementUnlockForm()
 
     return render(request, "tracker/mass-unlock.html", {
-        'formset': formset,
+        "formset": formset,
+    })
+
+@login_required
+def meeting_attendance(request):
+    if request.method == 'POST':
+        formset = AttendanceForm(request.POST)
+        if formset.is_valid():
+            members = formset.cleaned_data['members']
+            attendance_achievement = get_object_or_404(Unlockable, name="Attend a meeting!")
+            for member in members:
+                try:
+                    new_unlocked = Unlocked(member=member, unlockable=attendance_achievement)
+                    new_unlocked.save()
+                except:
+                    message = unicode("Error saving {0:>s}".format(new_unlocked))
+                    return render_to_response("tracker/attendance.html", {
+                        "formset": AttendanceForm,
+                        "message": message,
+                        "status": "error"
+                    },
+                    context_instance=RequestContext(request))
+        return HttpResponseRedirect("/tracker/success/")
+    else:
+        formset = AttendanceForm()
+
+    return render(request, "tracker/attendance.html", {
+        "formset": formset,
     })
 
 def success(request):
@@ -157,3 +185,7 @@ def success(request):
 class MassAchievementUnlockForm(forms.Form):
     unlockable = forms.ModelChoiceField(queryset=Unlockable.objects.all())
     members = forms.ModelMultipleChoiceField(queryset=Member.objects.all())
+
+class AttendanceForm(forms.Form):
+    members = forms.ModelMultipleChoiceField(queryset=Member.objects.all(),
+                                             widget=forms.CheckboxSelectMultiple())

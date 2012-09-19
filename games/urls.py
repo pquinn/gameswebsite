@@ -39,6 +39,7 @@ urlpatterns += patterns('tracker.views',
     (r'^tracker/unlockable/save-unlockable/$', 'save_unlockable'),
     (r'^tracker/unlockable/mass-unlock/$', 'mass_achievement_unlock'),
     (r'^tracker/success/$', 'success'),
+    (r'^tracker/attendance/$', 'meeting_attendance'),
 )
 
 urlpatterns += patterns('tracker.views',
