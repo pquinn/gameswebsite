@@ -4,7 +4,7 @@ from django.contrib import admin
 
 class MemberAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['tag', 'nuid', 'email', 'year']}),
+        (None, {'fields': ['tag', 'nuid', 'email', 'year', 'score']}),
     ]
     list_display = ('nuid', 'tag', 'email', 'year', 'score')
     search_fields = ['tag', 'nuid', 'email', 'year', 'score']

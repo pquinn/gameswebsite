@@ -7,7 +7,7 @@
 
 {% block contentBody %}
   {% include "components/status.html" %}
-  <h2>Meeting Attendance({{ current_time|date:"M d, Y" }}): </h2>
+  <h2>Meeting Attendance ({{ current_time|date:"M d, Y" }}): </h2>
   <form method="post" action="/tracker/attendance/">
     {% csrf_token %}
 

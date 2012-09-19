@@ -95,6 +95,14 @@ def make_achievement_public(sender, **kwargs):
             achievement.is_public = True
             achievement.save()
 
+@receiver(post_save, sender=Unlocked)
+def update_on_delete(sender, **kwargs):
+    if kwargs.get('deleted', True):
+        unlocked = kwargs.get('instance')
+        achievement = unlocked.unlockable
+        member = unlocked.member
+        member.score -= achievement.point_value
+
 #this is being ran twice for some odd reason
 #@receiver(post_save, sender=Member)
 #def member_created(sender, **kwargs):
