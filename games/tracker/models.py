@@ -74,6 +74,9 @@ def update_scores(sender, **kwargs):
             unlockables = member.achievements.all()
             member_total = 0
             for unlockable in unlockables:
+                if unlockable.is_public == False:
+                    unlockable.is_public == True
+                    unlockable.save()
                 member_total += unlockable.point_value
             member.score = member_total
             member.save()
@@ -86,22 +89,22 @@ def make_feat_public(sender, **kwargs):
             unlockable.is_public = True
             unlockable.save()
 
-@receiver(post_save, sender=Unlocked)
-def make_achievement_public(sender, **kwargs):
-    if kwargs.get('created', False):
-        unlocked = kwargs.get('instance')
-        achievement = unlocked.unlockable
-        if achievement.is_public == False:
-            achievement.is_public = True
-            achievement.save()
+#@receiver(post_save, sender=Unlocked)
+#def make_achievement_public(sender, **kwargs):
+#    if kwargs.get('created', False):
+#        unlocked = kwargs.get('instance')
+#        achievement = unlocked.unlockable
+#        if achievement.is_public == False:
+#            achievement.is_public = True
+#            achievement.save()
 
-@receiver(post_save, sender=Unlocked)
-def update_on_delete(sender, **kwargs):
-    if kwargs.get('deleted', True):
-        unlocked = kwargs.get('instance')
-        achievement = unlocked.unlockable
-        member = unlocked.member
-        member.score -= achievement.point_value
+#@receiver(post_save, sender=Unlocked)
+#def update_on_delete(sender, **kwargs):
+#    if kwargs.get('deleted', True):
+#        unlocked = kwargs.get('instance')
+#        achievement = unlocked.unlockable
+#        member = unlocked.member
+#        member.score -= achievement.point_value
 
 #this is being ran twice for some odd reason
 #@receiver(post_save, sender=Member)
