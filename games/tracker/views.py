@@ -184,8 +184,8 @@ def success(request):
 
 class MassAchievementUnlockForm(forms.Form):
     unlockable = forms.ModelChoiceField(queryset=Unlockable.objects.all())
-    members = forms.ModelMultipleChoiceField(queryset=Member.objects.all())
+    members = forms.ModelMultipleChoiceField(queryset=Member.objects.all().order_by("tag"))
 
 class AttendanceForm(forms.Form):
-    members = forms.ModelMultipleChoiceField(queryset=Member.objects.all(),
+    members = forms.ModelMultipleChoiceField(queryset=Member.objects.all().order_by("tag"),
                                              widget=forms.CheckboxSelectMultiple())
