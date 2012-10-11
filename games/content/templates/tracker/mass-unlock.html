@@ -9,7 +9,17 @@
   {% include "components/status.html" %}
   <form action="/tracker/unlockable/mass-unlock/" method="post">
     {% csrf_token %}
-    {{ formset.as_p }}
+    <div>
+      <style type="text/css">
+        label input {
+          display: inline;
+        }
+        ul {
+          list-style-type: none;
+        }
+      </style>
+      {{ formset }}
+    </div>
     <input type="submit" value="Submit" />
   </form>
 {% endblock %}

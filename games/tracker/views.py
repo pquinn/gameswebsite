@@ -93,7 +93,7 @@ def save_unlockable(request):
             )
 
 def leaderboard(request):
-    members = Member.objects.all().order_by("-score")[:25]
+    members = Member.objects.all().order_by("-score")
     param_dictionary = {"members": members}
     return render_to_response("tracker/leaderboard.html",
                               param_dictionary,
@@ -184,7 +184,8 @@ def success(request):
 
 class MassAchievementUnlockForm(forms.Form):
     unlockable = forms.ModelChoiceField(queryset=Unlockable.objects.all())
-    members = forms.ModelMultipleChoiceField(queryset=Member.objects.all().order_by("tag"))
+    members = forms.ModelMultipleChoiceField(queryset=Member.objects.all().order_by("tag"),
+                                             widget=forms.CheckboxSelectMultiple())
 
 class AttendanceForm(forms.Form):
     members = forms.ModelMultipleChoiceField(queryset=Member.objects.all().order_by("tag"),
