@@ -168,3 +168,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 TEMPLATE_STRING_IF_INVALID = 'INVALID TEMPLATE STRING'
+
+import dj_database_url
+DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
