@@ -5,4 +5,4 @@
 .DS_Store
 venv/
 games/gamesdb
-games/staticfiles
+games/static
