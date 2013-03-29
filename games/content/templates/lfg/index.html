@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block contentTitle %}
+  <h1>LFG</h1>
+  <p>"Looking for group."</p>
+{% endblock %}
+
+{% block contentBody %}
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>email</td>
+        <td>Role</td>
+        <td>Time available per week</td>
+        <td>Skills</td>
+      </tr>
+    </thead>
+    {% for person in people %}
+      <tr>
+        <td>{{ person.first_name }} {{ person.last_name }}</td>
+        <td>{{ person.email }}</td>
+        <td>{{ person.role }}</td>
+        <td>{{ person.time_per_week }} hours</td>
+        <td>{{ person.skills }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
