@@ -1,10 +1,19 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-  <title></title>
-</head>
-<body>
+{% extends "index.html" %}
 
-</body>
-</html>
+{% block contentTitle %}
+  <h1>Add Person</h1>
+  <p>whatever</p>
+{% endblock %}
+
+{% block contentBody %}
+  {% include "components/status.html" %}
+  <h2>Add Person: </h2>
+  <form method="post" action="/lfg/save-person/">
+    {% csrf_token %}
+
+    {{ formset }}
+
+    <input type="submit" value="submit" style="display: block;"/>
+    <input type="hidden" name="next" value="" />
+  </form>
+{% endblock %}

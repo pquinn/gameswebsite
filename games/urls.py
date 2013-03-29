@@ -45,7 +45,12 @@ urlpatterns += patterns('tracker.views',
 urlpatterns += patterns('tracker.views',
     (r'^tracker/unlockable/(?P<unlockable_id>\d+)/$', 'unlockable_detail'),
     (r'^tracker/member/(?P<member_id>\d+)/$', 'member_detail')
+)
 
+urlpatterns += patterns('lfg.views',
+    (r'^lfg/$', 'index'),
+    (r'^lfg/add-person/$', 'add_person'),
+    (r'^lfg/save-person/$', 'save_person')
 )
 
 urlpatterns += patterns('',
