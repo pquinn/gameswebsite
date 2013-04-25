@@ -127,6 +127,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'games.tracker',
+    'games.lfg',
+    'games.lfm'
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
