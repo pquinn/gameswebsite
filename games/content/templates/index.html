@@ -1,84 +1,14 @@
-{% load url from future %}
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    {% include "components/analytics.html" %}
-    <meta charset="utf-8">
-    <title>nuGDC</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Northeastern University Game Development Club">
-    <meta name="author" content="pquinn">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/jquery.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap-alert.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap-tooltip.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap-popover.js"></script>
-
-    <!-- Le styles -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-      }
-    </style>
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-  </head>
-
-  <body>
-
-    {% include "components/navbar.html" %}
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span2">
-          {% include "components/sidebar.html" %}
-        </div>
-        <div class="span10">
-          <div class="content">
-            <div class="hero-unit">
-              {% block contentTitle %}
-              <h1>We make games.</h1>
-              <p>If you have a passion for designing and analyzing games of all kinds, then this is the place for you.</p>
-              {% endblock %}
-            </div>
-            <div class="row-fluid">
-              {% block contentBody %}
-                <div class="span8">
-                  <h2>Hey!</h2>
-                  <p>I see you've found your way to our homepage! Check out the links on the left to find any information that you may be looking for.</p>
-                  {% if DEBUG %}
-                    <p>current: {{ CURRENT_URL }}</p>
-                    <p>root: {{ DJANGO_ROOT }}</p>
-                  {% endif %}
-                </div>
-                <div class="span4">
-                  <!--<h2>Heading</h2>
-                  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                  <p><a class="btn" href="#">View details &raquo;</a></p> -->
-               </div>
-             {% endblock %}
-            </div>
-          </div>
-        </div>
-      </div>
-        <footer>
-          <p>&copy; NUGDC, {{ current_time|date:"M Y" }}</p>
-        </footer>
-      </div>
-    </div>
-
-  </body>
+<html>
+	<head>
+		<title>nuGDC</title>
+		<style type="text/css">
+			body {background: #1e2126;}
+		</style>
+		<link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico">
+	</head>
+	<body>
+		<center>
+			<img src="{{ STATIC_URL }}images/comingsoon.png" style = "display:block;vertical-align:middle;">
+		</center>
+	</body>
 </html>
